@@ -7,13 +7,12 @@ function sendJoypadKey(key, status, callback) {
 }
 
 exports = module.exports = {
-  sendJoypadKey: sendJoypadKey,
-  port: 682
+  sendJoypadKey: sendJoypadKey
 }
 
 if (require.main === module) {
+  module.exports.port = 682
   sendJoypadKey(process.argv[2] || 'A', process.argv[3] || 1, function () {
-    console.log('key sent')
     process.exit(0)
   })
 }

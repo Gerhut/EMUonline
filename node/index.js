@@ -1,6 +1,8 @@
 var server = require('socket.io').listen(80)
 var input = require('./input')
-var PORT = 682
+var screenshot = require('./screenshot')
+
+input.port = screenshot.port = 682
 
 server.sockets.on('connection', function (socket) {
   socket.on('joypad', function (data) {
