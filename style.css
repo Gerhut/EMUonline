@@ -1,0 +1,13 @@
+body {
+  text-align: center;
+}
+
+table {
+  display: inline-table;
+}
+
+button {
+  width: 100%;
+  min-width: 60px;
+  height: 45px;
+}
