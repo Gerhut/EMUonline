@@ -1,15 +1,21 @@
-var server = require('socket.io').listen(80)
+var BinaryServer = require('binaryjs').BinaryServer
 var input = require('./input')
 var screenshot = require('./screenshot')
 
 input.port = screenshot.port = 682
 
-server.sockets.on('connection', function (socket) {
-  socket.on('joypad', function (data) {
-    console.log(data)
-    if (typeof data.key === 'string'
-      && typeof data.status === 'number') {
-      input.sendJoypadKey(data.key, data.status)
-    }
+var server = new BinaryServer({port: 80})
+
+server.on('connection', function (client) {
+  console.log('client connected.')
+  client.on('close', function () {
+    console.log('client disconnected.')
   })
 })
+
+screenshot.on('screenshot', function (data) {
+  for (var id in server.clients) {
+    server.clients[id].send(data, 'screenshot')
+  }
+})
+screenshot.start()
