@@ -1,4 +1,5 @@
 local socketInput = require('socketInput')
+local socketScreenshot = require('socketScreenshot')
 
 socketInput.allow(
   'up', 'down', 'left', 'right',
@@ -7,5 +8,6 @@ socketInput.allow(
 socketInput.bind(682)
 
 vba.registerbefore(function ()
-  joypad.set(1, socketInput.buttons())
+  socketInput.work()
+  socketScreenshot.work()
 end)

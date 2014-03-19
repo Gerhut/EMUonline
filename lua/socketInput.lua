@@ -17,7 +17,7 @@ function module.bind(port)
   assert(udp:settimeout(0))
 end
 
-function module.buttons()
+function module.work()
   pcall(function ()
     local data, msg = udp:receive()
     if not data then
@@ -32,9 +32,8 @@ function module.buttons()
     end
     status = (status == '1')
     buttons[key] = status
-    return
   end)
-  return buttons
+  return joypad.set(1, buttons)
 end
 
 return module
