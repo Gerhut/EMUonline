@@ -11,13 +11,20 @@ function receive() {
   length = 0
 }
 
+function gd2png(buffer, callback) {
+  // TODO
+  setTimeout(callback, 200, null, buffer)
+}
+
 socket.on('data', function (data) {
   buffers.push(data)
   length += data.length
 })
 
 socket.on('close', function () {
-  exports.emit('screenshot', buffer.Buffer.concat(buffers, length))
+  gd2png(buffer.Buffer.concat(buffers, length), function(err, buffer) {
+    exports.emit('screenshot', buffer)
+  })
 })
 
 exports = module.exports = new events.EventEmitter()
