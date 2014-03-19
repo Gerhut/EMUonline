@@ -1,0 +1,25 @@
+{
+  "name": "EMUonline",
+  "version": "0.0.0",
+  "description": "在线多人操作支持Lua编程的模拟器。",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Gerhut/EMUonline.git"
+  },
+  "keywords": [
+    "emulator"
+  ],
+  "author": "Gerhut <Gerhut@GMail.com>",
+  "license": "GPLv2",
+  "bugs": {
+    "url": "https://github.com/Gerhut/EMUonline/issues"
+  },
+  "homepage": "https://github.com/Gerhut/EMUonline",
+  "dependencies": {
+    "binaryjs": "^0.2.1"
+  }
+}
