@@ -1,0 +1,1 @@
+var client = BinaryClient('ws://link.gerhut.me')
