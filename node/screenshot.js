@@ -13,7 +13,10 @@ function receive() {
 
 function gd2png(buffer, callback) {
   // TODO
-  setTimeout(callback, 200, null, buffer)
+  setTimeout(function () {
+    callback(null, buffer.slice(11))
+    receive()
+  }, 200)
 }
 
 socket.on('data', function (data) {
