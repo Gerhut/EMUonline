@@ -1,11 +1,11 @@
-local emuInput = require('emuInput')
+local socketInput = require('socketInput')
 
-emuInput.allow(
+socketInput.allow(
   'up', 'down', 'left', 'right',
   'select', 'start',
   'A', 'B', 'R', 'L')
-emuInput.bind(682)
+socketInput.bind(682)
 
-gui.register(function ()
-  emuInput.work()
+vba.registerbefore(function ()
+  joypad.set(1, socketInput.buttons())
 end)

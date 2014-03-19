@@ -2,7 +2,7 @@ require 'socket'
 
 local udp = assert(socket.udp())
 local allow = {}
-local buttons = {}
+local buttons = joypad.get(0)
 
 module = {}
 
@@ -17,27 +17,24 @@ function module.bind(port)
   assert(udp:settimeout(0))
 end
 
-function module.work()
+function module.buttons()
   pcall(function ()
     local data, msg = udp:receive()
     if not data then
-      print("Error:" .. msg)
+      if msg ~= 'timeout' then
+        print("Error:" .. msg)
+      end
       return
     end
-    print(data)
     _, _, key, status = string.find(data, "^joypad (%a+) ([01])$")
-    print(key, status)
     if not allow[key] or not status then
       return
     end
-    status = (status == '1' and 1 or nil)
+    status = (status == '1')
     buttons[key] = status
     return
   end)
+  return buttons
 end
-
-gui.register(function ()
-  joypad.set(0, buttons)
-end)
 
 return module
