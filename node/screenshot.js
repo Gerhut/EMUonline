@@ -1,6 +1,7 @@
 var net = require('net')
 var events = require('events')
 var buffer = require('buffer')
+var png = require('png')
 
 var socket = new net.Socket()
 var buffers, length
@@ -12,11 +13,15 @@ function receive() {
 }
 
 function gd2png(buffer, callback) {
-  // TODO
-  setTimeout(function () {
-    callback(null, buffer.slice(11))
+  var pngObj = new png.Png(
+    buffer,
+    exports.width,
+    exports.height,
+    'rgba')
+  pngObj.encode(function(pngData) {
+    callback(null, pngData)
     receive()
-  }, 200)
+  })
 }
 
 socket.on('data', function (data) {
@@ -36,6 +41,8 @@ exports.start = receive
 
 if (require.main === module) {
   module.exports.port = 682
+  module.exports.width = 240
+  module.exports.height = 160
   exports.on('screenshot', function (screenshot) {
     console.log(screenshot.length)
     process.exit(0)

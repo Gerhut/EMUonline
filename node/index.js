@@ -3,6 +3,8 @@ var input = require('./input')
 var screenshot = require('./screenshot')
 
 input.port = screenshot.port = 682
+screenshot.width = 240
+screenshot.height = 160
 
 var server = new BinaryServer({port: 80})
 
