@@ -6,7 +6,7 @@ input.port = screenshot.port = 682
 screenshot.width = 240
 screenshot.height = 160
 
-var server = new BinaryServer({port: 80})
+var server = new BinaryServer({port: 3000})
 
 server.on('connection', function (client) {
   console.log('client connected.')
