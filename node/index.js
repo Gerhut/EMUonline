@@ -26,7 +26,14 @@ server.on('connection', function (client) {
 
 screenshot.on('screenshot', function (data) {
   for (var id in server.clients) {
-    server.clients[id].send(data, 'screenshot')
+    try {
+      var client = server.clients[id]
+      if (Object.keys(client.streams).length === 0) {
+        client.send(data, 'screenshot')
+      }
+    } catch(e) {
+      console.log(e)
+    }
   }
 })
 screenshot.start()
