@@ -23,6 +23,7 @@
         data.set(new Uint8Array(buffers[0]), offset)
       }
       setScreenshot(data)
+      stream.destroy()
     })
   }
 
