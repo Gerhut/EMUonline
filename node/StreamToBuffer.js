@@ -9,7 +9,7 @@ module.exports = function (source, callback) {
     totalLength += chunk.length
   }
 
-  function onError() {
+  function onError(err) {
     callback(err, totalLength === 0 ? null
       : Buffer.concat(buffers, totalLength))
   }
