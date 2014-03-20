@@ -10,10 +10,19 @@ var server = new BinaryServer({port: 80})
 
 server.on('connection', function (client) {
   console.log('client connected.')
+  console.log(server._server.clients.length + ' online.')
   client.on('close', function () {
     console.log('client disconnected.')
+    console.log(server._server.clients.length + ' online.')
+  })
+
+  client.on('stream', function (stream, meta) {
+    stream.on('data', function (data) {
+      input.joypad(data.key, data.status)
+    })
   })
 })
+
 
 screenshot.on('screenshot', function (data) {
   for (var id in server.clients) {
