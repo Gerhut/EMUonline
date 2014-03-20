@@ -3,9 +3,11 @@
   var context = canvas.getContext('2d')
 
   function setScreenshot(data) {
-    var imageData = context.createImageData(canvas.width, canvas.height)
-    imageData.data.set(data)
-    context.putImageData(imageData, 0, 0)
+    var img = new Image()
+    img.onload = function () {
+      context.drawImage(img, 0, 0)
+    }
+    img.src = "data:image/png;base64," + btoa(String.fromCharCode.apply(null, data))
   }
 
   function readScreenshot(stream) {
