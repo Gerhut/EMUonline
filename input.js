@@ -1,5 +1,5 @@
 (function () {
-  Array.prorotype.forEach.call(document.getElementsByTagName('button'), function (button) {
+  Array.prototype.forEach.call(document.getElementsByTagName('button'), function (button) {
     button.addEventListener('mousedown', function () {
       client.send({
         'name': 'debug',
