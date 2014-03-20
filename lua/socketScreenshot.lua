@@ -15,7 +15,7 @@ function module.work(port)
     local client = tcp:accept()
     if client then
       client:send(gui.gdscreenshot())
-      client:close()
+      client:shutdown()
     end
   end)
 end

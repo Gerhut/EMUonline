@@ -11,6 +11,7 @@ var buffers, length
 function receive() {
   socket.connect(exports.port, '127.0.0.1')
   StreamToBuffer(socket, dataReceived)
+  socket.end()
 }
 
 function dataReceived(err, buffer) {
