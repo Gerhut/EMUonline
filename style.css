@@ -2,8 +2,13 @@ body {
   text-align: center;
 }
 
+canvas {
+  display: block;
+  margin: auto;
+}
+
 table {
-  display: inline-table;
+  margin: auto;
 }
 
 button {

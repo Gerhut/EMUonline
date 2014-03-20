@@ -1,1 +1,1 @@
-var client = BinaryClient('ws://link.gerhut.me')
+var client = BinaryClient('ws://link.gerhut.me:3000')
