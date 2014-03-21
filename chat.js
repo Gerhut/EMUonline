@@ -1,7 +1,7 @@
 (function () {
   var pre = document.getElementsByTagName('pre')[0]
   var form = document.getElementsByTagName('form')[0]
-  var input = document.getElementsByTagName('input')[0]
+  var chat = document.getElementById('chat')
   
   function setStream(stream) {
     stream.on('data', function (data) {
@@ -13,8 +13,8 @@
     })
 
     form.onsubmit = function () {
-      stream.write(input.value)
-      input.value = ''
+      stream.write(chat.value)
+      chat.value = ''
       return false;
     }
   }
