@@ -1,4 +1,5 @@
 var BinaryServer = require('binaryjs').BinaryServer
+var chat = require('./chat')
 var input = require('./input')
 var screenshot = require('./screenshot')
 
@@ -14,8 +15,13 @@ server.on('connection', function (client) {
     console.log(Object.keys(server.clients).length + ' online.')
   })
   
-  initScreenshotStream(client)
-  initJoypadStream(client)
+  chat(client, function (err) {
+    if (err) {
+      return client.close()
+    }
+    initScreenshotStream(client)
+    initJoypadStream(client)
+  })
 })
 
 function initScreenshotStream(client) {
@@ -23,7 +29,7 @@ function initScreenshotStream(client) {
 }
 
 function initJoypadStream(client) {
-  client.streams.joypad = client.createStream('joypad').on('data', function (data) {
+  client.createStream('joypad').on('data', function (data) {
     if ('key' in data && 'status' in data)
       input.joypad(data.key, data.status)
   })
@@ -33,7 +39,7 @@ screenshot.on('screenshot', function (data) {
   var stream
   for (var id in server.clients) {
     stream = server.clients[id].streams.screenshot
-    stream.write(data)
+    stream && stream.writable && stream.write(data)
   }
 })
 screenshot.start()
