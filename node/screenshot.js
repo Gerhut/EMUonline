@@ -1,6 +1,6 @@
 var net = require('net')
 var events = require('events')
-var pngjs = require('pngjs')
+var jpeg = require('jpeg-js')
 var Buffer = require('buffer').Buffer
 
 var StreamToBuffer = require('./StreamToBuffer')
@@ -18,33 +18,22 @@ function dataReceived(err, buffer) {
   if (err)
     exports.emit('error', err)
   else
-    data2png(buffer)
+    data2jpeg(buffer)
 }
 
-function data2png(buffer) {
-  var png = new pngjs.PNG({
+function data2jpeg(buffer) {
+  var pixels = Buffer.concat([
+    buffer.slice(12),
+    new Buffer(1)
+  ])
+  var pic = {
+    data: pixels,
     width: exports.width,
-    height: exports.height,
-    checkCRC: false
-  })
-  var pixels = exports.width * exports.height
-  png.data = Buffer.concat([
-      buffer.slice(12),
-      new Buffer(1)
-    ], pixels * 4)
-
-  for (var i = 0; i < pixels; i++) {
-    png.data[i * 4 + 3] = 0xFF
+    height: exports.height
   }
-
-  StreamToBuffer(png.pack(), pngReceived)
-}
-
-function pngReceived(err, buffer) {
-  if (err)
-    return exports.emit('error', err)
-  exports.emit('screenshot', buffer)
-  receive()
+  pic = jpeg.encode(pic, 20)
+  exports.emit('screenshot', pic.data)
+  setImmediate(receive)
 }
 
 exports = module.exports = new events.EventEmitter()
@@ -56,7 +45,7 @@ if (require.main === module) {
   module.exports.width = 240
   module.exports.height = 160
   exports.on('screenshot', function (screenshot) {
-    require('fs').writeFileSync('screenshot.png', screenshot)
+    require('fs').writeFileSync('screenshot.jpeg', screenshot)
     process.exit(0)
   })
   exports.start()
