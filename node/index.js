@@ -1,4 +1,5 @@
 var BinaryServer = require('binaryjs').BinaryServer
+var user = require('./user')
 var chat = require('./chat')
 var input = require('./input')
 var screenshot = require('./screenshot')
@@ -15,14 +16,19 @@ server.on('connection', function (client) {
     console.log(Object.keys(server.clients).length + ' online.')
   })
   
-  chat(client, function (err) {
+  user(client, function (err) {
     if (err) {
       return client.close()
     }
+    initChatStream(client)
     initScreenshotStream(client)
     initJoypadStream(client)
   })
 })
+
+function initChatStream(client) {
+  chat(client)
+}
 
 function initScreenshotStream(client) {
   client.streams.screenshot = client.createStream('screenshot')
