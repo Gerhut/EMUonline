@@ -7,7 +7,7 @@
     img.onload = function () {
       context.drawImage(img, 0, 0)
     }
-    img.src = "data:image/png;base64," + btoa(String.fromCharCode.apply(null, data))
+    img.src = "data:image/jpeg;base64," + btoa(String.fromCharCode.apply(null, data))
   }
 
   function onData(buffer) {
