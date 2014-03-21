@@ -10,26 +10,23 @@
     img.src = "data:image/png;base64," + btoa(String.fromCharCode.apply(null, data))
   }
 
-  function readScreenshot(stream) {
-    var buffers = []
-    var length = 0
-    stream.on('data', function (buffer) {
-      buffers.push(buffer)
-      length += buffer.byteLength
-    })
-    stream.on('end', function () {
-      var data = new Uint8Array(length)
-      for (var offset = 0; buffers.length; offset += buffers.shift().byteLength) {
-        data.set(new Uint8Array(buffers[0]), offset)
-      }
-      setScreenshot(data)
-      stream.destroy()
-    })
+  function onData(buffer) {
+    setScreenshot(new Uint8Array(buffer))
   }
 
-  client.on('stream', function(stream, meta){
+  function onClose() {
+    this.removeListener('data', onData)
+    this.removeListener('close', onClose)
+  }
+
+  function setStream(stream) {
+    stream.on('data', onData)
+    stream.on('close', onClose)
+  }
+
+  client.on('stream', function (stream, meta){
     if (meta === 'screenshot') {
-      readScreenshot(stream)
+      setStream(stream)
     }
   });
 })()
