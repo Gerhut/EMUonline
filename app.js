@@ -1,6 +1,5 @@
 var client, hellos = []
 
-document.addEventListener('DOMContentLoaded', function () {
-  var name = prompt('起名')
+function hello(name) {
   hellos.forEach( function (hello) { hello(name); } )
-}, false)
+}
