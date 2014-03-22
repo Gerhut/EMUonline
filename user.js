@@ -16,10 +16,10 @@
           })
         } else if (data.isOnline === true) {
           onlineUsers[data.name] = true
-          pre.innerHTML = data.name + ' is online.\n' + pre.innerHTML
+          pre.innerHTML = data.name + ' 上线\n' + pre.innerHTML
         } else if (data.isOnline === false) {
           delete onlineUsers[data.name]
-          pre.innerHTML = data.name + ' is offline.\n' + pre.innerHTML
+          pre.innerHTML = data.name + ' 下线\n' + pre.innerHTML
         }
         ul.innerHTML = Object.keys(onlineUsers).map(function (name) {
           return '<li class="list-group-item">' + name + '</li>'
@@ -27,7 +27,9 @@
       })
     })
     client.on('close', function () {
-      alert('Disconnected:(. Please refresh.')
+      if (confirm('掉线了！刷新页面？')) {
+        location.replace(location.href);
+      }
     })
   })
 }) ()
