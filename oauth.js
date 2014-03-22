@@ -12,8 +12,13 @@
     location.hash.indexOf('access_token='));
   accessToken = accessToken.substr(0, accessToken.indexOf('&'));
   
-  var restUrl = 'https://openapi.baidu.com/rest/2.0/passport/users/getLoggedInUser?' + accessToken + '&callback=?'
-  $.getJSON(restUrl).done(function (data) {
-    hello(data.uname)
-  });
+  var restUrl = 'https://openapi.baidu.com/rest/2.0/passport/users/getLoggedInUser?' + accessToken + '&callback=callback'
+  var script = document.createElement('script')
+  script.src = restUrl
+  document.head.appendChild(script)
+
+  window.callback = function (data) {
+    delete window.callback;
+    hello(data.uname);
+  };
 }());
