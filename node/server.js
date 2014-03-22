@@ -13,7 +13,6 @@ function server() {
       }
       initChatStream(client)
       initScreenshotStream(client)
-      i=0;
       initJoypadStream(client)
     })
   })
@@ -29,9 +28,33 @@ function initScreenshotStream(client) {
 }
 
 function initJoypadStream(client) {
-  client.createStream('joypad').on('data', function (data) {
-    if ('key' in data && 'status' in data)
-      input.joypad(data.key, data.status)
+  client.streams.joypad = client.createStream('joypad').on('data', function (data) {
+    if (!('name' in data))
+      return
+    if (data.status === 1) { // key down
+      if (!('key' in data)) // no specific key
+        return
+      if ('key' in client.userdata) // already a key down
+        return
+      client.userdata.key = data.key
+      input.joypad(data.key, 1)
+      user.broadcast('joypad', {
+        name: data.name,
+        key: data.key,
+        status: 1
+      })
+    } else if (data.status === 0) { // key up
+      if (!('key' in client.userdata)) // no key down
+        return
+      var key = client.userdata.key
+      delete client.userdata.key
+      input.joypad(key, 0)
+      user.broadcast('joypad', {
+        name: data.name,
+        key: key,
+        status: 0
+      })
+    }
   })
 }
 
