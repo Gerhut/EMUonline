@@ -1,6 +1,6 @@
 (function () {
   var data = { 'name': 'debug' }
-  var inputRecord = document.getElementsByTagName('input-record')[0]
+  var inputRecord = document.getElementById('input-record')
   var keyNames = {
     up: '上',
     down: '下',
