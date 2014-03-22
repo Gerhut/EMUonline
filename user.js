@@ -28,7 +28,7 @@
     })
     client.on('close', function () {
       if (confirm('掉线了！刷新页面？')) {
-        location.href = location.origin
+        location.replace(location.protocol + '//' + location.host);
       }
     })
   })

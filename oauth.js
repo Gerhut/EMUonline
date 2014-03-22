@@ -22,6 +22,6 @@
     if ('uname' in data)
       hello(data.uname);
     else
-      location.href = location.origin;
+      location.replace(location.protocol + '//' + location.host);
   };
 }());
