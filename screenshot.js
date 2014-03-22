@@ -1,7 +1,6 @@
 (function () {
   var canvas = document.getElementsByTagName('canvas')[0]
   var context = canvas.getContext('2d')
-  var highQuality = document.getElementById('highQuality')
 
   function setScreenshot(data) {
     var img = new Image()
@@ -23,14 +22,13 @@
   function setStream(stream) {
     stream.on('data', onData)
     stream.on('close', onClose)
-    highQuality.onchange = function () {
-      stream.write(!highQuality.checked)
-    }
   }
 
-  client.on('stream', function (stream, meta){
-    if (meta === 'screenshot') {
-      setStream(stream)
-    }
-  });
+  hellos.push(function () {
+    client.on('stream', function (stream, meta){
+      if (meta === 'screenshot') {
+        setStream(stream)
+      }
+    });
+  })
 })()

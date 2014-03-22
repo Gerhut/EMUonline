@@ -2,37 +2,77 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>EMUonline</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+  <style>
+  body {
+    font:500 0.875em/1.8 Microsoft Yahei, Hiragino Sans GB, WenQuanYi Micro Hei, sans-serif;
+  }
+  canvas {
+    width: 100%;
+  }
+  </style>
 </head>
 <body>
-  <canvas width="240" height="160">大哥你浏览器不行</canvas>
-  <input type="checkbox" id="highQuality">High Quality
-  <table>
-    <tr>
-      <td colspan="3"><button>L</button></td>
-      <td></td>
-      <td colspan="3"><button>R</button></td>
-    </tr>
-    <tr>
-      <td></td>
-      <td><button>up</button></td>
-    </tr>
-    <tr>
-      <td><button>left</button></td>
-      <td><button>down</button></td>
-      <td><button>right</button></td>
-      <td><button>select</button></td>
-      <td><button>start</button></td>
-      <td><button>B</button></td>
-      <td><button>A</button></td>
-    </tr>
-  </table>
-  <pre></pre>
-  <form><input id="chat"></form>
-  <ul></ul>
-  <footer>请给作者<a href="http://me.alipay.com/gerhut">捐钱</a>买好服务器</footer>
+  <div class="container">
+    <div class="page-header text-center">
+      <h1>当前游戏：<small>塞尔达传说 - 缩小帽</small></h1>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="alert alert-info">
+          <div class="row">
+            <div class="col-sm-6 col-sm-push-3">
+              <canvas width="240" height="160">大哥你浏览器不行</canvas>
+            </div>
+            <div class="col-sm-3 col-xs-6 col-sm-pull-6">
+              <p>
+                <button class="btn btn-primary btn-sm btn-block" data-key="L">Ｌ</button>
+              </p>
+              <p class="text-center">
+                <button class="btn btn-primary btn-sm" data-key="up"><span class="glyphicon glyphicon-arrow-up"></span></button>
+                <br>
+                <button class="btn btn-primary btn-sm" data-key="left"><span class="glyphicon glyphicon-arrow-left"></span></button>
+                <button class="btn btn-primary btn-sm" data-key="right"><span class="glyphicon glyphicon-arrow-right"></span></button>
+                <br>
+                <button class="btn btn-primary btn-sm" data-key="down"><span class="glyphicon glyphicon-arrow-down"></span></button>
+              </p>
+            </div>
+            <div class="col-sm-3 col-xs-6">
+                <p>
+                  <button class="btn btn-primary btn-sm btn-block" data-key="R">Ｒ</button>
+                </p>
+                <p class="text-center">
+                  <button class="btn btn-primary btn-sm" data-key="B">Ｂ</button>
+                  <button class="btn btn-primary btn-sm" data-key="A">Ａ</button>
+                </p>
+                <p class="text-center">
+                  <button class="btn btn-primary btn-sm" data-key="select">择</button>
+                  <button class="btn btn-primary btn-sm" data-key="start">始</button>
+                </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="row">
+          <div class="col-sm-9">
+            <form><input id="chat" class="form-control"></form>
+            <pre class="pre-scrollable"></pre>
+          </div>
+          <div class="col-sm-3">
+            <ul class="list-group"></ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer class="text-center">
+      <hr>
+      为啥总卡机？都赖服务器。流畅玩游戏，请捐<a href="bitcoin:1JdcBikcZXCqbAuvUJrhoGsyehozXdANA9">比特币</a>。<br>
+      没挖比特币？也收<a href="http://me.alipay.com/gerhut" target="_blank">人民币</a>。土豪最给力，好处心中记。
+    </footer>
+  </div>
   <script src="http://cdn.binaryjs.com/0/binary.min.js"></script>
   <script src="app.js"></script>
   <script src="user.js"></script>

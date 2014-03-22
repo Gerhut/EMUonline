@@ -16,20 +16,24 @@
 
     Array.prototype.forEach.call(document.getElementsByTagName('button'), function (button) {
       button.addEventListener('mousedown', function () {
-        writeDown(button.innerText)
+        writeDown(button.dataset.key)
       }, false)
       button.addEventListener('mouseup', function () {
-        writeUp(button.innerText)
+        writeUp(button.dataset.key)
       }, false)
       button.addEventListener('mouseout', function (event) {
-        event.which && writeUp(button.innerText)
+        event.which && writeUp(button.dataset.key)
       }, false)
     });
   }
 
-  client.on('stream', function (stream, meta){
-    if (meta === 'joypad') {
-      setStream(stream)
-    }
-  });
+  hellos.push(function (name) {
+    data.name = name
+
+    client.on('stream', function (stream, meta){
+      if (meta === 'joypad') {
+        setStream(stream)
+      }
+    });
+  })
 })()

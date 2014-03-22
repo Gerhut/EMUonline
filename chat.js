@@ -19,9 +19,11 @@
     }
   }
 
-  client.on('stream', function (stream, meta) {
-    if (meta === 'chat') {
-      setStream(stream)
-    }
+  hellos.push(function () {
+    client.on('stream', function (stream, meta) {
+      if (meta === 'chat') {
+        setStream(stream)
+      }
+    })
   })
 }) ()
