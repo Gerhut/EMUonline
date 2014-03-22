@@ -3,11 +3,17 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
   <title>EMUonline</title>
   <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
   <style>
   body {
     font:500 0.875em/1.8 Microsoft Yahei, Hiragino Sans GB, WenQuanYi Micro Hei, sans-serif;
+  }
+  #game {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
   }
   canvas {
     width: 100%;
@@ -22,7 +28,7 @@
     <div class="page-header text-center">
       <h1>当前游戏：<small>塞尔达传说 - 缩小帽</small></h1>
     </div>
-    <div class="row">
+    <div id="game" class="row">
       <div class="col-md-6">
         <div class="alert alert-info">
           <div class="row">

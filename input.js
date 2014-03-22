@@ -38,16 +38,22 @@
       inputRecord.innerHTML = data.name + (data.status ? '按下[' : '抬起[') + name + ']\n' + inputRecord.innerHTML
     })
 
+    var isTouch = ('ontouchstart' in document)
+
     Array.prototype.forEach.call(document.getElementsByTagName('button'), function (button) {
-      button.addEventListener('mousedown', function () {
+      button.addEventListener(isTouch ? 'touchstart' : 'mousedown', function () {
         writeDown(button.dataset.key)
       }, false)
-      button.addEventListener('mouseup', function () {
-        writeUp()
-      }, false)
-      button.addEventListener('mouseout', function (event) {
-        event.which && writeUp()
-      }, false)
+      button.addEventListener(isTouch ? 'touchend' : 'mouseup', writeUp, false)
+      if (isTouch) {
+        button.addEventListener('touchend', writeUp, false)
+        button.addEventListener('touchleave', writeUp, false)
+        button.addEventListener('touchcancel', writeUp, false)
+      } else {
+        button.addEventListener('mouseout', function (event) {
+          event.which && writeUp()
+        }, false)
+      }
     });
   }
 
