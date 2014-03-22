@@ -19,6 +19,9 @@
 
   window.callback = function (data) {
     delete window.callback;
-    hello(data.uname);
+    if ('uname' in data)
+      hello(data.uname);
+    else
+      location.href = location.origin;
   };
 }());
