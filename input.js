@@ -1,6 +1,6 @@
 (function () {
   var data = { 'name': 'debug' }
-  var pre = document.getElementsByTagName('pre')[0]
+  var inputRecord = document.getElementsByTagName('input-record')[0]
   var keyNames = {
     up: '上',
     down: '下',
@@ -30,7 +30,7 @@
     stream.on('data', function (data) {
       var name = keyNames[data.key]
       if (!name) return;
-      pre.innerHTML = data.name + (data.status ? '按下[' : '抬起[') + name + ']\n' + pre.innerHTML
+      inputRecord.innerHTML = data.name + (data.status ? '按下[' : '抬起[') + name + ']\n' + inputRecord.innerHTML
     })
 
     Array.prototype.forEach.call(document.getElementsByTagName('button'), function (button) {

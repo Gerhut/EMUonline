@@ -1,7 +1,7 @@
 (function () {
   var onlineUsers = {}
   var ul = document.getElementsByTagName('ul')[0]
-  var pre = document.getElementsByTagName('pre')[0]
+  var chatRecord = document.getElementById('chat-record')
   var chat = document.getElementById('chat')
   var stream
 
@@ -16,10 +16,10 @@
           })
         } else if (data.isOnline === true) {
           onlineUsers[data.name] = true
-          pre.innerHTML = data.name + ' 上线\n' + pre.innerHTML
+          chatRecord.innerHTML = data.name + ' 上线\n' + chatRecord.innerHTML
         } else if (data.isOnline === false) {
           delete onlineUsers[data.name]
-          pre.innerHTML = data.name + ' 下线\n' + pre.innerHTML
+          chatRecord.innerHTML = data.name + ' 下线\n' + chatRecord.innerHTML
         }
         ul.innerHTML = Object.keys(onlineUsers).map(function (name) {
           return '<li class="list-group-item">' + name + '</li>'
