@@ -1,4 +1,4 @@
-(function () {
+(function (undefined) {
   var data = { 'name': 'debug' }
   var inputRecord = document.getElementById('input-record')
   var keyNames = {
@@ -13,16 +13,21 @@
     L: 'Ｌ',
     R: 'Ｒ',
   }
+  var downKey;
 
   function setStream(stream) {
     function writeDown (key) {
+      downKey = key
       data.key = key
       data.status = 1
       stream.write(data)
     }
 
-    function writeUp (key) {
-      data.key = key
+    function writeUp () {
+      if (!downKey)
+        return;
+      downKey = undefined
+      delete data.key
       data.status = 0
       stream.write(data)
     }
@@ -38,10 +43,10 @@
         writeDown(button.dataset.key)
       }, false)
       button.addEventListener('mouseup', function () {
-        writeUp(button.dataset.key)
+        writeUp()
       }, false)
       button.addEventListener('mouseout', function (event) {
-        event.which && writeUp(button.dataset.key)
+        event.which && writeUp()
       }, false)
     });
   }
