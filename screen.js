@@ -26,7 +26,7 @@
 
   hellos.push(function () {
     client.on('stream', function (stream, meta){
-      if (meta === 'screenshot') {
+      if (meta === 'screen') {
         setStream(stream)
       }
     });
