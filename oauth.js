@@ -25,4 +25,4 @@
     else
       location.replace(location.protocol + '//' + location.host);
   };
-}());
+})();

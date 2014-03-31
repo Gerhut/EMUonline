@@ -41,6 +41,7 @@
     var isTouch = ('ontouchstart' in document)
 
     Array.prototype.forEach.call(document.getElementsByTagName('button'), function (button) {
+      if (typeof button.dataset.key === 'undefined') return;
       button.addEventListener(isTouch ? 'touchstart' : 'mousedown', function () {
         writeDown(button.dataset.key)
       }, false)
