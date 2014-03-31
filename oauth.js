@@ -6,7 +6,6 @@
     'redirect_uri=' + location.protocol + '//' + location.host
   ].join('&');
   if (location.hash.indexOf('access_token=') === -1) {
-    alert('请使用百度账号登录，没有百度账号不要紧，“登录并授权”按钮下面也有QQ、微博等登陆方式的图标，总有一款适合你。')
     return location.href = oAuthUrl;
   }
 

@@ -4,8 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta property="wb:webmaster" content="fbc6e7fd0741ed59" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
   <title>EMUonline</title>
   <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
   <style>
@@ -23,25 +22,32 @@
   pre.pre-scrollable {
     height: 150px;
   }
+  #fool #foolpic {
+    display: block;
+  }
+  #fool canvas {
+    display: none;
+  }
+  #foolpic {
+    display: none;
+  }
   </style>
   <script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js" type="text/javascript" charset="utf-8"></script>
 </head>
 <body>
   <div class="container">
     <div class="page-header text-center">
-      <h1>当前游戏：<small>漆黑的魅影</small><wb:publish action="publish" type="web" language="zh_cn" button_type="red" button_size="big" button_text="分享给微博好友" default_text="球助攻" tag="多人实操漆黑的魅影" refer="y" default_image="" appkey="2ugjdo" ></wb:publish></h1>
+      <h1>当前游戏：<small>口袋妖怪XY</small></h1>
     </div>
     <div id="game" class="row">
       <div class="col-md-6">
         <div class="alert alert-info">
           <div class="row">
-            <div class="col-sm-6 col-sm-push-3">
-              <canvas width="240" height="160">大哥你浏览器不行</canvas>
+            <div id="fool" class="col-sm-6 col-sm-push-3">
+              <img id="foolpic" src="pokemonxy.jpg" width="160" height="144">
+              <canvas width="160" height="144">大哥你浏览器不行</canvas>
             </div>
             <div class="col-sm-3 col-xs-6 col-sm-pull-6">
-              <p class="text-center">
-                <button class="btn btn-primary btn-sm btn-block" data-key="L">Ｌ</button>
-              </p>
               <p class="text-center">
                 <button class="btn btn-primary btn-sm" data-key="up"><span class="glyphicon glyphicon-arrow-up"></span></button>
                 <br>
@@ -52,9 +58,6 @@
               </p>
             </div>
             <div class="col-sm-3 col-xs-6">
-              <p class="text-center">
-                <button class="btn btn-primary btn-sm btn-block" data-key="R">Ｒ</button>
-              </p>
                 <p class="text-center">
                   <button class="btn btn-primary btn-sm" data-key="B">Ｂ</button>
                   <button class="btn btn-primary btn-sm" data-key="A">Ａ</button>
