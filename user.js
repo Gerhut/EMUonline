@@ -7,7 +7,7 @@
 
   window.hellos.push(function (name) {
     chat.placeholder = name + '说'
-    client = BinaryClient('ws://link.gerhut.me:3000')
+    client = BinaryClient('ws://localhost:3000')
     client.on('open', function () {
       this.send(name, 'user').on('data', function (data) {
         if ('forEach' in data) {
