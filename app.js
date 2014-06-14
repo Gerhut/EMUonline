@@ -1,5 +1,5 @@
 var client, hellos = []
 
-function hello(name) {
-  hellos.forEach( function (hello) { hello(name); } )
+function hello(data) {
+  hellos.forEach( function (hello) { hello(data); } )
 }

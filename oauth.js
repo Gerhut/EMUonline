@@ -20,8 +20,8 @@
 
   window.callback = function (data) {
     delete window.callback;
-    if ('uname' in data)
-     hello(data.uname);
+    if ('uname' in data && 'uid' in data)
+     hello(data);
     else
      location.replace(location.protocol + '//' + location.host);
   };

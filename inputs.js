@@ -7,13 +7,16 @@
     left: '左',
     right: '右',
     start: '开始',
-    select: '选择',
     A: 'Ａ',
-    B: 'Ｂ',
-    L: 'Ｌ',
-    R: 'Ｒ',
+    B: 'Ｂ'
   }
   var downKey;
+  var availableKeys = [
+    {up: true, down: true},
+    {left: true, right: true},
+    {A: true},
+    {B: true, start: true}
+  ];
 
   function setStream(stream) {
     function writeDown (key) {
@@ -39,9 +42,15 @@
     })
 
     var isTouch = ('ontouchstart' in document)
-
     Array.prototype.forEach.call(document.getElementsByTagName('button'), function (button) {
       if (typeof button.dataset.key === 'undefined') return;
+      if (! (button.dataset.key in data.keys)) {
+        button.disabled = true;
+        button.innerHTML = '<span class="glyphicon glyphicon-remove"></span>';
+        button.classList.add('btn-danger')
+        return
+      }
+      button.classList.add('btn-primary')
       button.addEventListener(isTouch ? 'touchstart' : 'mousedown', function () {
         writeDown(button.dataset.key)
       }, false)
@@ -58,8 +67,9 @@
     });
   }
 
-  hellos.push(function (name) {
-    data.name = name
+  hellos.push(function (d) {
+    data.name = d.uname
+    data.keys = availableKeys[d.uid % availableKeys.length]
 
     client.on('stream', function (stream, meta){
       if (meta === 'joypad') {

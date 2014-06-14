@@ -5,7 +5,8 @@
   var chat = document.getElementById('chat')
   var stream
 
-  window.hellos.push(function (name) {
+  window.hellos.push(function (data) {
+    var name = data.uname
     chat.placeholder = name + '说'
     client = BinaryClient('ws://42.96.204.14:3000')
     client.on('open', function () {
