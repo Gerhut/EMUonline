@@ -17,6 +17,10 @@
     {A: true},
     {B: true, start: true}
   ];
+  var availableKeys = [
+    {up: true, down: true, left: true, right: true},
+    {A: true, B: true, start: true}
+  ];
 
   function setStream(stream) {
     function writeDown (key) {
