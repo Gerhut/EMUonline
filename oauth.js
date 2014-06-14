@@ -1,5 +1,4 @@
 (function () {
-  /*
   var clientId = 'HcA7pk8sqoQklZswvTwXz9YS';
   var oAuthUrl = [
     'https://openapi.baidu.com/oauth/2.0/authorize?response_type=token',
@@ -26,8 +25,4 @@
     else
      location.replace(location.protocol + '//' + location.host);
   };
-  */
-  window.onload = function() {
-    hello("admin")
-  }
 })();
