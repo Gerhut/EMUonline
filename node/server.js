@@ -12,7 +12,7 @@ function server() {
         return client.close()
       }
       initChatStream(client)
-      initScreenshotStream(client)
+      initScreenStream(client)
       initJoypadStream(client)
     })
   })
@@ -23,8 +23,8 @@ function initChatStream(client) {
   chat(client)
 }
 
-function initScreenshotStream(client) {
-  client.streams.screenshot = client.createStream('screenshot')
+function initScreenStream(client) {
+  client.streams.screen = client.createStream('screen')
 }
 
 function initJoypadStream(client) {
@@ -58,9 +58,9 @@ function initJoypadStream(client) {
   })
 }
 
-function broadcastScreenshot(screenshot) {
-  user.broadcast('screenshot', screenshot)
+function broadcastScreen(screen) {
+  user.broadcast('screen', screen)
 }
 
 module.exports = server
-module.exports.broadcastScreenshot = broadcastScreenshot
+module.exports.broadcastScreen = broadcastScreen

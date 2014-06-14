@@ -2,7 +2,7 @@ var net = require('net')
 var events = require('events')
 var jpeg = require('jpeg-js')
 var Buffer = require('buffer').Buffer
-var options = require('./screenshot.json')
+var options = require('./screen.json')
 
 var StreamToBuffer = require('./StreamToBuffer')
 
@@ -33,7 +33,7 @@ function data2jpeg(buffer) {
     height: options.height
   }
   pic = jpeg.encode(pic, options.quality)
-  exports.emit('screenshot', pic.data)
+  exports.emit('screen', pic.data)
 }
 
 exports = module.exports = new events.EventEmitter()
@@ -41,9 +41,9 @@ exports = module.exports = new events.EventEmitter()
 exports.receive = receive
 
 if (require.main === module) {
-  exports.on('screenshot', function (screenshot) {
-    require('fs').writeFileSync('screenshot.jpeg', screenshot)
+  exports.on('screen', function (screen) {
+    require('fs').writeFileSync('screen.jpeg', screen)
     process.exit(0)
   })
-  exports.start()
+  exports.receive()
 }

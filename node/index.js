@@ -1,10 +1,10 @@
 var server = require('./server')
-var screenshot = require('./screenshot')
-var receive = screenshot.receive
+var screen = require('./screen')
+var receive = screen.receive
 
 server()
-screenshot.on('screenshot', function (screenshot) {
-  server.broadcastScreenshot(screenshot)
+screen.on('screen', function (screen) {
+  server.broadcastScreen(screen)
   setImmediate(receive)
 })
 receive()

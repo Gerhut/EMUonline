@@ -1,7 +1,7 @@
-var screenshot = require('./screenshot')
+var screen = require('./screen')
 
-screenshot.on('screenshot', function (data) {
+screen.on('screen', function (data) {
   process.send(data)
-  setImmediate(screenshot.receive)
+  setImmediate(screen.receive)
 })
-screenshot.receive()
+screen.receive()
