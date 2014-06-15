@@ -1,0 +1,14 @@
+{
+  "port": 682,
+  "key": {
+    "allows": {
+      "up": true,
+      "down": true,
+      "left": true,
+      "right": true,
+      "A": true,
+      "B": true,
+      "start": true
+    }
+  }
+}
