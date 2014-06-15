@@ -34,6 +34,8 @@ function data2jpeg(buffer) {
   }
   pic = jpeg.encode(pic, options.quality)
   exports.emit('screen', pic.data)
+
+  options.interval >= 0 && setTimeout(receive, options.interval)
 }
 
 exports = module.exports = new events.EventEmitter()

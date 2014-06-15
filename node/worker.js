@@ -1,7 +1,5 @@
 var screen = require('./screen')
 
-screen.on('screen', function (data) {
+screen.receive().on('screen', function (data) {
   process.send(data)
-  setImmediate(screen.receive)
 })
-screen.receive()
