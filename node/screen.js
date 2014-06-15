@@ -13,6 +13,7 @@ function receive() {
   socket.connect(options.port, '127.0.0.1')
   StreamToBuffer(socket, dataReceived)
   socket.end()
+  return this
 }
 
 function dataReceived(err, buffer) {

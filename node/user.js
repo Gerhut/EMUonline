@@ -40,11 +40,11 @@ function user(client, callback) {
         name: name,
         isOnline: false
       })
-    console.log(name, 'is offline')
+    console.log(name, 'is offline', Date())
     })
     client.streams.user.write(Object.keys(userClient))
     callback()
-    console.log(name, 'is online')
+    console.log(name, 'is online', Date())
   }
 }
 
