@@ -11,7 +11,6 @@
     B: 'Ｂ'
   }
   var downKey;
-  var availableKeys = [];
   var availableKeyCount = 5;
 
   var keys = Object.keys || function (obj) {
@@ -72,7 +71,7 @@
 
   hellos.push(function (d) {
     var allKeys = keys(keyNames)
-    var id = d.id
+    var id = d.uid
 
     data.name = d.uname
     data.keys = {}
