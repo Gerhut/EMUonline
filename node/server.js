@@ -9,6 +9,7 @@ function server() {
   new BinaryServer({port: 3000}).on('connection', function (client) {
     user(client, function (err) {
       if (err) {
+        console.log(err)
         return client.close()
       }
       initChatStream(client)

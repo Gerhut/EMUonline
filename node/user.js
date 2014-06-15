@@ -1,3 +1,4 @@
+var options = require('./user.json')
 var userClient = {}
 
 function user(client, callback) {
@@ -29,6 +30,12 @@ function user(client, callback) {
   
   function applyUser() {
     var name = client.userdata.name
+    var onlineNum = Object.keys(userClient).length
+
+    if (onlineNum >= options.onlineLimit && !(options.admins[name])) {
+      return callback(new Error('Online Limit.'))
+    }
+
     userClient[name] = client
     broadcast('user', {
       name: name,
