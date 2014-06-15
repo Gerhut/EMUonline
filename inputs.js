@@ -80,7 +80,7 @@
     for ( var i = 0; i < availableKeyCount; i++ ) {
       var keyId = id % allKeys.length
       id = Math.floor(id / allKeys.length)
-      data[allKeys[keyId]] = true
+      data.keys[allKeys[keyId]] = true
       allKeys.splice(keyId, 1)
     }
 
