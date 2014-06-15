@@ -11,18 +11,15 @@
     B: 'Ｂ'
   }
   var downKey;
-  var availableKeys = [
-    {up: true, down: true},
-    {left: true, right: true},
-    {A: true},
-    {B: true, start: true}
-  ];
-  //*
-  var availableKeys = [
-    {up: true, down: true, left: true, right: true},
-    {A: true, B: true, start: true}
-  ];
-  //*/
+  var availableKeys = [];
+  var availableKeyCount = 5;
+
+  var keys = Object.keys || function (obj) {
+    var keys = []
+    for (var key in obj)
+      keys.push(key)
+    return keys
+  }
 
   function setStream(stream) {
     function writeDown (key) {
@@ -74,8 +71,18 @@
   }
 
   hellos.push(function (d) {
+    var allKeys = keys(keyNames)
+    var id = d.id
+
     data.name = d.uname
-    data.keys = availableKeys[d.uid % availableKeys.length]
+    data.keys = {}
+
+    for ( var i = 0; i < availableKeyCount; i++ ) {
+      var keyId = id % allKeys.length
+      id = Math.floor(id / allKeys.length)
+      data[allKeys[keyId]] = true
+      allKeys.splice(keyId, 1)
+    }
 
     client.on('stream', function (stream, meta){
       if (meta === 'joypad') {
