@@ -13,7 +13,9 @@
     })
 
     form.onsubmit = function () {
-      stream.write(chat.value)
+      if (chat.value.trim().length === 0)
+        return false;
+      stream.write(chat.value.trim())
       chat.value = ''
       return false;
     }
