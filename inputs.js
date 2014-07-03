@@ -11,7 +11,7 @@
     B: 'Ｂ'
   }
   var downKey;
-  var availableKeyCount = 5;
+  var availableKeyCount = 7;
 
   var keys = Object.keys || function (obj) {
     var keys = []
