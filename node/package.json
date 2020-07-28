@@ -21,6 +21,6 @@
   "homepage": "https://github.com/Gerhut/EMUonline",
   "dependencies": {
     "binaryjs": "^0.2.1",
-    "jpeg-js": "0.0.3"
+    "jpeg-js": "0.4.1"
   }
 }
